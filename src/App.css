@@ -26,3 +26,11 @@ a:active {
   width: 100% !important;
   height: auto !important;
 }
+
+.leaderboard{
+  position: absolute;
+  top: 25%;
+  right: 0;
+
+  background-color: red;
+}
