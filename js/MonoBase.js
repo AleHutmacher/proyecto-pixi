@@ -9,6 +9,7 @@ class MonoBase {
         this.canDrag = canDrag;
         this.canClone = canClone;
         this.canAttack = canAttack;
+        this.rango = 20;
     
         this.offset = { x: 0, y: 0 };
     
@@ -32,6 +33,19 @@ class MonoBase {
           this.sprite.y = this.y;
         }
       }
+
+      
+
+      
+      dispararAlGloboMasCercano(){
+        const globosCercanos = []
+        for(let i = 0; i < this.juego.globos.length; i++){
+          const globo = this.juego.globos[i];
+          const distancia = Math.sqrt(Math.pow(globo.x - this.x, 2) + Math.pow(globo.y - this.y, 2));
+          if(distancia < this.rango) globosCercanos.push(globo);
+        }
+      }
+
     
       update(time) {
         if (!this.listo) return;

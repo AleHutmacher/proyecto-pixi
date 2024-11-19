@@ -2,8 +2,26 @@ class Juego {
   constructor() {
     this.monos = [];
     this.checkpoints = [
-      { x: 1000, y: 100 },
-      { x: 200, y: 2000 },
+      { x: 407, y: 425 },
+      { x: 407, y: 514 },
+      { x: 784, y: 514 },
+      { x: 784, y: 290 },
+      { x: 659, y: 290 },
+      { x: 659, y: 428 },
+      { x: 536, y: 428 },
+      { x: 536, y: 212 },
+      { x: 429, y: 212 },
+      { x: 429, y: 312 },
+      { x: 335, y: 312 },
+      { x: 335, y: 212 },
+      { x: 233, y: 212 },
+      { x: 233, y: 312 },
+      { x: 110, y: 312 },
+      { x: 110, y: 90 },
+      { x: 647, y: 90 },
+      { x: 647, y: 170 },
+      { x: 784, y: 170 },
+      { x: 784, y: 0 },
     ];
     this.globos = []; //
     this.app = new PIXI.Application();
@@ -12,6 +30,7 @@ class Juego {
     this.alto = 637;
     this.mouse = { x: 0, y: 0 };
     this.teclado = {};
+    this.jugador = new Jugador(this.app, this);
 
     let promesa = this.app.init({
       width: this.ancho,
@@ -81,6 +100,14 @@ class Juego {
     for (let i = 0; i < this.monos.length; i++) {
       this.monos[i].update(time);
     }
+    for (let i = 0; i < this.globos.length; i++) {
+      this.globos[i].update(time);
+    }
+  }
+
+  generarJugador(){
+    // Crear un jugador con una posición inicial aleatoria
+    this.jugador = new Jugador(this.app, this);
   }
 
   ponerMonosIniciales() {
@@ -162,6 +189,11 @@ class Juego {
 
   ponerGlobo() {
     // Asegurarse de que la aplicación esté inicializada antes de crear el globo
-    this.globos.push(new Globo(400, 200, this.app, this.checkpoints));
+    this.globos.push(new Globo(0, 425, this.app, this.checkpoints));
+  }
+
+  eliminarGlobo() {
+    this.globos.shift();
   }
 }
+
