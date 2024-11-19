@@ -1,7 +1,11 @@
 class Juego {
   constructor() {
+    this.checkpoints = [
+      { x: 1000, y: 100 },
+      { x: 200, y: 2000 },
+    ];
     this.chaboncitos = [];
-    this.obstaculos = []; //
+    this.globos = []; //
     this.app = new PIXI.Application();
     this.contadorDeFrame = 0;
     this.ancho = 1000;
@@ -36,15 +40,16 @@ class Juego {
         delete this.teclado[e.key];
       };
 
-      this.ponerChaboncitos(1);
-    });
+      // Llamar a ponerGlobo solo después de que PIXI haya sido inicializado
+      this.ponerGlobo();
 
-    this.ponerFondo();
+      this.ponerFondo();
+      this.ponerChaboncitos(1); // Este ya está dentro del 'then', así que se ejecutará después de la inicialización
+    });
   }
 
   ponerFondo() {
     // Crear un patrón a partir de una imagen
-
     const image = new Image();
 
     image.onload = () => {
@@ -60,7 +65,6 @@ class Juego {
 
       // Crear un sprite con la textura del patrón
       this.backgroundSprite = new PIXI.TilingSprite(texture, 5000, 5000);
-      // this.backgroundSprite.tileScale.set(0.5);
 
       // Añadir el sprite al stage
       this.app.stage.addChild(this.backgroundSprite);
@@ -71,17 +75,14 @@ class Juego {
 
   gameLoop(time) {
     this.time = time;
-
     this.contadorDeFrame++;
 
     for (let i = 0; i < this.chaboncitos.length; i++) {
       this.chaboncitos[i].update(time);
     }
-
-    // if(this.chaboncitos.length <500) {
-    //     this.ponerChaboncitos(500);
-
-    // }
+    for (let i = 0; i < this.globos.length; i++) {
+      this.globos[i].update(time);
+    }
   }
 
   ponerChaboncitos(cantidad) {
@@ -91,6 +92,7 @@ class Juego {
       );
     }
   }
+
   clonarChaboncitos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       this.chaboncitos.push(
@@ -107,5 +109,8 @@ class Juego {
     }
   }
 
-  
+  ponerGlobo() {
+    // Asegurarse de que la aplicación esté inicializada antes de crear el globo
+    this.globos.push(new Globo(400, 200, this.app, this.checkpoints));
+  }
 }
