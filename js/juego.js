@@ -66,7 +66,7 @@ class Juego {
       this.app.stage.addChild(this.backgroundSprite);
     };
 
-    image.src = "../assets/img/Fondo.png";
+    image.src = "./img/Fondo.png";
   }
 
   gameLoop(time) {
@@ -106,4 +106,6 @@ class Juego {
       );
     }
   }
+
+  
 }
