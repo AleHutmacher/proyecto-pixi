@@ -4,7 +4,7 @@ class MonoBarco extends MonoBase {
         if (this.canDrag) this.canDrag = false;
       }
     async cargarSprite() {
-        const monoTexture = await PIXI.Assets.load("../assets/img/SpriteMonoBarco.png");
+        const monoTexture = await PIXI.Assets.load("../img/SpriteMonoBarco.png");
         this.sprite = new PIXI.Sprite(monoTexture);
 
         this.sprite.x = this.x;

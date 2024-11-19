@@ -5,7 +5,7 @@ class MonoComun extends MonoBase {
       }
 
       async cargarSprite() {
-        const monoTexture = await PIXI.Assets.load("../assets/img/SpriteMono.png");
+        const monoTexture = await PIXI.Assets.load("../img/SpriteMono.png");
         this.sprite = new PIXI.Sprite(monoTexture);
     
         // Configurar posición inicial
