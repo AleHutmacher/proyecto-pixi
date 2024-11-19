@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body canvas{
+    width: 80%;
+    height: auto;
+}
+
+body{
+    display: flex;
+}
+
+.marcador{
+    background-color: black;
+    color: white;
+    width: 100%;
+}

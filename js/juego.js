@@ -1,7 +1,11 @@
 class Juego {
   constructor() {
     this.monos = [];
-    this.obstaculos = []; //
+    this.checkpoints = [
+      { x: 1000, y: 100 },
+      { x: 200, y: 2000 },
+    ];
+    this.globos = []; //
     this.app = new PIXI.Application();
     this.contadorDeFrame = 0;
     this.ancho = 1000;
@@ -36,10 +40,12 @@ class Juego {
         delete this.teclado[e.key];
       };
 
+
       this.ponerMonosIniciales();
     });
-
+    this.ponerGlobo();
     this.ponerFondo();
+
   }
 
   ponerFondo() {
@@ -62,11 +68,13 @@ class Juego {
       this.backgroundSprite = new PIXI.TilingSprite(texture, 5000, 5000);
       // this.backgroundSprite.tileScale.set(0.5);
 
+
       // Añadir el sprite al stage
       this.app.stage.addChild(this.backgroundSprite);
     };
 
-    image.src = "../assets/img/Fondo.png";
+    image.src = "./img/Fondo.png";
+
   }
 
   gameLoop(time) {
@@ -151,5 +159,10 @@ class Juego {
         )
       );
     }
+
+  ponerGlobo() {
+    // Asegurarse de que la aplicación esté inicializada antes de crear el globo
+    this.globos.push(new Globo(400, 200, this.app, this.checkpoints));
+
   }
 }

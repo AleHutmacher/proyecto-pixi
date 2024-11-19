@@ -20,7 +20,6 @@ function distancia(obj1, obj2) {
   // return calculoDeDistanciaRapido(obj1.x , obj1.y, obj2.x, obj2.y);
   return Math.sqrt((obj1.x - obj2.x) ** 2 + (obj1.y - obj2.y) ** 2);
 }
-
 function rectangulosSeSolapan(rect1, rect2) {
   // Cálculo de los límites de rect1 (rectángulo 1)
   const rect1Izquierda = rect1.x - rect1.ancho / 2;
