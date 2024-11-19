@@ -14,10 +14,8 @@ class Chaboncito {
     this.cargarSpriteAnimado();
   }
 
-  
-
   async cargarSpriteAnimado() {
-    const monoTexture = await PIXI.Assets.load("Imagenes/SpriteMono.png");
+    const monoTexture = await PIXI.Assets.load("../assets/img/SpriteMono.png");
     this.sprite = new PIXI.Sprite(monoTexture);
 
     // Configurar posición inicial
@@ -32,8 +30,8 @@ class Chaboncito {
 
     // Agregar eventos de interacción
     this.sprite
-      .on('pointerdown', this.crearNuevoChavonsito.bind(this))
-      .on('pointermove', this.onDragMove.bind(this))
+      .on("pointerdown", this.crearNuevoChavonsito.bind(this))
+      .on("pointermove", this.onDragMove.bind(this));
 
     this.app.stage.addChild(this.sprite);
 
@@ -42,7 +40,7 @@ class Chaboncito {
 
   crearNuevoChavonsito(event) {
     if (this.clonable) juego.clonarChaboncitos(1);
-    if (this.dragging) this.dragging = false
+    if (this.dragging) this.dragging = false;
   }
 
   onDragMove(event) {
@@ -50,7 +48,7 @@ class Chaboncito {
       // Mover el sprite según la posición global del mouse
       const { x, y } = event.data.global;
       this.x = x - this.offset.x;
-      this.y = y - this.offset.y +15;
+      this.y = y - this.offset.y + 15;
 
       // Actualizar la posición del sprite
       this.sprite.x = this.x;
@@ -58,11 +56,9 @@ class Chaboncito {
     }
   }
 
-
   update(time) {
     if (!this.listo) return;
 
     this.time = time;
-
   }
 }
