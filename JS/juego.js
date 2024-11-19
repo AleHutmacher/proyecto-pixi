@@ -88,8 +88,8 @@ class Juego {
     for (let i = 0; i < cantidad; i++) {
       this.chaboncitos.push(
         new Chaboncito(
-          950,
-          100,
+          935,
+          198,
           this.app,
           i,
           this,
