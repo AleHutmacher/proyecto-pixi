@@ -1,6 +1,6 @@
 class Juego {
   constructor() {
-    this.chaboncitos = [];
+    this.monos = [];
     this.obstaculos = []; //
     this.app = new PIXI.Application();
     this.contadorDeFrame = 0;
@@ -36,7 +36,7 @@ class Juego {
         delete this.teclado[e.key];
       };
 
-      this.ponerChaboncitos(1);
+      this.ponerMonosIniciales();
     });
 
     this.ponerFondo();
@@ -74,34 +74,80 @@ class Juego {
 
     this.contadorDeFrame++;
 
-    for (let i = 0; i < this.chaboncitos.length; i++) {
-      this.chaboncitos[i].update(time);
-    }
-
-    // if(this.chaboncitos.length <500) {
-    //     this.ponerChaboncitos(500);
-
-    // }
-  }
-
-  ponerChaboncitos(cantidad) {
-    for (let i = 0; i < cantidad; i++) {
-      this.chaboncitos.push(
-        new Chaboncito(935, 198, this.app, i, this, false, true)
-      );
+    for (let i = 0; i < this.monos.length; i++) {
+      this.monos[i].update(time);
     }
   }
-  clonarChaboncitos(cantidad) {
+
+  ponerMonosIniciales() {
+    this.ponerMonoComun(1);
+    this.ponerMonoSniper(1);
+    this.ponerMonoBarco(1);
+  }
+
+  ponerMonoComun(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      this.chaboncitos.push(
-        new Chaboncito(
+      this.monos.push(
+        new MonoComun(935, 198, this.app, i, this, false, true, false)
+      );}
+  }
+  ponerMonoSniper(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      this.monos.push(
+        new MonoSniper(935, 315, this.app, i, this, false, true, false)
+      );}
+  }
+
+  ponerMonoBarco(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+    this.monos.push(
+      new MonoBarco(935, 450, this.app, i, this, false, true, false)
+    );}
+  }
+  clonarMonoComun(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      this.monos.push(
+        new MonoComun(
           this.mouse.x,
           this.mouse.y,
           this.app,
           i,
           this,
           true,
-          false
+          false,
+          true,
+        )
+      );
+    }
+  }
+  clonarMonoBarco(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      this.monos.push(
+        new MonoBarco(
+          this.mouse.x,
+          this.mouse.y,
+          this.app,
+          i,
+          this,
+          true,
+          false,
+          true,
+        )
+      );
+    }
+  }
+  clonarMonoSniper(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      this.monos.push(
+        new MonoSniper(
+          this.mouse.x,
+          this.mouse.y,
+          this.app,
+          i,
+          this,
+          true,
+          false,
+          true,
         )
       );
     }
