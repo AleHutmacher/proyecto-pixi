@@ -6,27 +6,25 @@ class Chaboncito {
     this.x = x;
     this.y = y;
     this.listo = false;
-
     this.dragging = dragging;
     this.clonable = clonable;
+
     this.offset = { x: 0, y: 0 };
 
     this.cargarSpriteAnimado();
   }
 
+  
+
   async cargarSpriteAnimado() {
-    let json = await PIXI.Assets.load("texture.json");
-    this.sprite = new PIXI.AnimatedSprite(json.animations["corriendo"]);
-    this.sprite.animationSpeed = 0.1;
-    this.sprite.loop = true;
-    this.sprite.play();
+    const monoTexture = await PIXI.Assets.load("Imagenes/SpriteMono.png");
+    this.sprite = new PIXI.Sprite(monoTexture);
 
     // Configurar posición inicial
     this.sprite.x = this.x;
     this.sprite.y = this.y;
 
-    this.sprite.anchor.set(0.5, 1);
-    this.sprite.currentFrame = Math.floor(Math.random() * 8);
+    this.sprite.anchor.set(0.5, 0.5);
 
     // Hacer interactivo el sprite
     this.sprite.interactive = true;
