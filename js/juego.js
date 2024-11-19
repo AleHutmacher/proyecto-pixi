@@ -40,12 +40,10 @@ class Juego {
         delete this.teclado[e.key];
       };
 
-
       this.ponerMonosIniciales();
     });
     this.ponerGlobo();
     this.ponerFondo();
-
   }
 
   ponerFondo() {
@@ -68,13 +66,11 @@ class Juego {
       this.backgroundSprite = new PIXI.TilingSprite(texture, 5000, 5000);
       // this.backgroundSprite.tileScale.set(0.5);
 
-
       // Añadir el sprite al stage
       this.app.stage.addChild(this.backgroundSprite);
     };
 
     image.src = "./img/Fondo.png";
-
   }
 
   gameLoop(time) {
@@ -97,20 +93,23 @@ class Juego {
     for (let i = 0; i < cantidad; i++) {
       this.monos.push(
         new MonoComun(935, 198, this.app, i, this, false, true, false)
-      );}
+      );
+    }
   }
   ponerMonoSniper(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       this.monos.push(
         new MonoSniper(935, 315, this.app, i, this, false, true, false)
-      );}
+      );
+    }
   }
 
   ponerMonoBarco(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-    this.monos.push(
-      new MonoBarco(935, 450, this.app, i, this, false, true, false)
-    );}
+      this.monos.push(
+        new MonoBarco(935, 450, this.app, i, this, false, true, false)
+      );
+    }
   }
   clonarMonoComun(cantidad) {
     for (let i = 0; i < cantidad; i++) {
@@ -123,7 +122,7 @@ class Juego {
           this,
           true,
           false,
-          true,
+          true
         )
       );
     }
@@ -139,7 +138,7 @@ class Juego {
           this,
           true,
           false,
-          true,
+          true
         )
       );
     }
@@ -155,14 +154,14 @@ class Juego {
           this,
           true,
           false,
-          true,
+          true
         )
       );
     }
+  }
 
   ponerGlobo() {
     // Asegurarse de que la aplicación esté inicializada antes de crear el globo
     this.globos.push(new Globo(400, 200, this.app, this.checkpoints));
-
   }
 }
