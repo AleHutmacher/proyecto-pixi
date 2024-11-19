@@ -12,6 +12,11 @@ class Chaboncito {
     this.offset = { x: 0, y: 0 };
 
     this.cargarSpriteAnimado();
+    this.eventosGlobales();
+  }
+
+  eventosGlobales() {
+    this.app.stage.interactive = true;
   }
 
   async cargarSpriteAnimado() {
@@ -31,7 +36,7 @@ class Chaboncito {
     // Agregar eventos de interacción
     this.sprite
       .on("pointerdown", this.crearNuevoChavonsito.bind(this))
-      .on("pointermove", this.onDragMove.bind(this));
+      this.app.stage.on("pointermove", this.onDragMove.bind(this));
 
     this.app.stage.addChild(this.sprite);
 
@@ -48,7 +53,7 @@ class Chaboncito {
       // Mover el sprite según la posición global del mouse
       const { x, y } = event.data.global;
       this.x = x - this.offset.x;
-      this.y = y - this.offset.y + 15;
+      this.y = y - this.offset.y;
 
       // Actualizar la posición del sprite
       this.sprite.x = this.x;
