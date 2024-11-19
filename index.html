@@ -9,7 +9,7 @@
     <script src="./js/Globo.js"></script>
     <script src="./js/jugador.js"></script>
     <script src="./js/juego.js"></script>
-  
+
     <link rel="stylesheet" href="./index.css" />
     <style>
       body {
@@ -22,6 +22,19 @@
     <script>
       let juego = new Juego();
     </script>
-    <div class="marcador">Marcador</div>
+    <div class="marcador">
+      <table id="tabla-puntuaciones">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Puntuación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Las filas de puntuaciones se agregarán aquí dinámicamente -->
+        </tbody>
+      </table>
+      <script src="frontend.js"></script>
+    </div>
   </body>
 </html>
